@@ -389,7 +389,10 @@ p.reset(q,d);
 简单地说就是防止编译器对代码进行优化。比如如下程序：
 
 ```
-`XBYTE[2]=0x55;``XBYTE[2]=0x56;``XBYTE[2]=0x57;``XBYTE[2]=0x58;`
+XBYTE[2]=0x55;
+XBYTE[2]=0x56;
+XBYTE[2]=0x57;
+XBYTE[2]=0x58;
 ```
 
 对外部硬件而言，上述四条语句分别表示不同的操作，会产生四种不同的动作，但是编译器却会对上述四条语句进行优化，认为只有XBYTE[2]=0x58（即忽略前三条语句，只产生一条机器代码）。如果键入**volatile**，则编译器会逐一地进行编译并产生相应的机器代码（产生四条代码）。
@@ -961,4 +964,3 @@ class derived2: public base
 ```
 
 In `derived2` the compiler will issue an error for "changing the type". Without `override`, at most the compiler would give a warning for "you are hiding virtual method by same name".
-
